@@ -1,0 +1,21 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model Bet {
+  id        String   @id @default(cuid())
+  selecao   String
+  odd       Float
+  valor     Float
+  casa      String
+  esporte   String
+  status    String   @default("PENDENTE")
+  retorno   Float?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
