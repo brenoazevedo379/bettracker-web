@@ -18,9 +18,9 @@ export default function Historico() {
       })
   }, [])
 
-  const filtrados = filtro === 'TODOS' ? bets : bets.filter(b => b.status === filtro)
+  const filtrados = filtro === 'TODOS' ? bets : bets.filter((b: any) => b.status === filtro)
 
-  const statusLabel = {
+  const statusLabel: any = {
     PENDENTE: { label: 'Pendente', color: 'text-yellow-400 bg-yellow-400/10' },
     VENCEU: { label: 'Venceu', color: 'text-green-400 bg-green-400/10' },
     PERDEU: { label: 'Perdeu', color: 'text-red-400 bg-red-400/10' },
@@ -29,8 +29,10 @@ export default function Historico() {
   return (
     <div className="min-h-screen bg-zinc-950 text-white">
       <header className="border-b border-zinc-800 px-6 py-4 flex items-center gap-4">
-        <button onClick={() => router.push('/')} className="text-zinc-400 hover:text-white text-sm">? Voltar</button>
-        <h1 className="text-xl font-bold text-green-400">Histórico de Apostas</h1>
+        <button onClick={() => router.push('/')} className="text-zinc-400 hover:text-white text-sm">
+          &larr; Voltar
+        </button>
+        <h1 className="text-xl font-bold text-green-400">Historico de Apostas</h1>
       </header>
 
       <main className="p-6 max-w-2xl mx-auto space-y-4">
@@ -52,12 +54,12 @@ export default function Historico() {
           <p className="text-zinc-500 text-sm text-center py-8">Nenhuma aposta encontrada.</p>
         ) : (
           <div className="space-y-3">
-            {filtrados.map(bet => (
+            {filtrados.map((bet: any) => (
               <div key={bet.id} className="bg-zinc-900 border border-zinc-800 rounded-xl px-4 py-4 flex items-center justify-between">
                 <div className="space-y-1">
                   <p className="text-white font-medium">{bet.selecao}</p>
-                  <p className="text-zinc-400 text-xs">{bet.casa} · {bet.esporte} · Odd {bet.odd}</p>
-                  <p className="text-zinc-400 text-xs">Apostado: R$ {bet.valor} · Retorno: R$ {bet.retorno?.toFixed(2)}</p>
+                  <p className="text-zinc-400 text-xs">{bet.casa} - {bet.esporte} - Odd {bet.odd}</p>
+                  <p className="text-zinc-400 text-xs">Apostado: R$ {bet.valor} - Retorno: R$ {bet.retorno?.toFixed(2)}</p>
                 </div>
                 <span className={`text-xs font-bold px-3 py-1 rounded-full ${statusLabel[bet.status]?.color}`}>
                   {statusLabel[bet.status]?.label}
