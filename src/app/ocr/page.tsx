@@ -1,17 +1,16 @@
 ﻿'use client'
-
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 
 export default function OCRPage() {
   const router = useRouter()
-  const [image, setImage] = useState(null)
-  const [preview, setPreview] = useState(null)
+  const [image, setImage] = useState<File | null>(null)
+  const [preview, setPreview] = useState<string | null>(null)
   const [loading, setLoading] = useState(false)
-  const [resultado, setResultado] = useState(null)
-  const [erro, setErro] = useState(null)
+  const [resultado, setResultado] = useState<any>(null)
+  const [erro, setErro] = useState<string | null>(null)
 
-  function handleImage(e) {
+  function handleImage(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0]
     if (!file) return
     setImage(file)
@@ -31,7 +30,7 @@ export default function OCRPage() {
       const data = await res.json()
       if (data.error) throw new Error(data.error)
       setResultado(data)
-    } catch (e) {
+    } catch (e: any) {
       setErro(e.message)
     } finally {
       setLoading(false)
