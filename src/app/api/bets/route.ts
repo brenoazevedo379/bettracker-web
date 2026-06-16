@@ -4,7 +4,7 @@ import { prisma } from '@/lib/prisma'
 export async function POST(request: Request) {
   try {
     const body = await request.json()
-    const { selecao, odd, valor, casa, esporte } = body
+    const { selecao, odd, valor, casa, esporte, telefone } = body
 
     if (!selecao || !odd || !valor || !casa || !esporte) {
       return NextResponse.json(
@@ -21,6 +21,7 @@ export async function POST(request: Request) {
         casa,
         esporte,
         retorno: parseFloat(valor) * parseFloat(odd),
+        telefone: telefone || null,
       },
     })
 

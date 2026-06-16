@@ -3,8 +3,8 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
-  url      = "file:./dev.db"
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
 
 model Bet {
@@ -16,6 +16,7 @@ model Bet {
   esporte   String
   status    String   @default("PENDENTE")
   retorno   Float?
+  telefone  String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }

@@ -12,6 +12,7 @@ type Bet = {
   esporte: string
   status: string
   retorno: number
+  telefone: string | null
   createdAt: string
 }
 
@@ -45,6 +46,7 @@ export default function Home() {
         odd: bet.odd,
         valor: bet.valor,
         retorno: bet.retorno,
+        telefone: bet.telefone,
       }),
     })
 

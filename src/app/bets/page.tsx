@@ -13,6 +13,7 @@ export default function NovaBet() {
     valor: '',
     casa: '',
     esporte: '',
+    telefone: '',
   })
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) {
@@ -21,7 +22,7 @@ export default function NovaBet() {
 
   async function handleSubmit() {
     setErro('')
-    if (!form.selecao || !form.odd || !form.valor || !form.casa || !form.esporte) {
+    if (!form.selecao || !form.odd || !form.valor || !form.casa || !form.esporte || !form.telefone) {
       setErro('Preencha todos os campos.')
       return
     }
@@ -119,6 +120,18 @@ export default function NovaBet() {
             <option value="tennis">Tênis</option>
             <option value="other">Outro</option>
           </select>
+        </div>
+
+        <div className="space-y-2">
+          <label className="text-sm text-zinc-400">WhatsApp para notificação</label>
+          <input
+            name="telefone"
+            value={form.telefone}
+            onChange={handleChange}
+            type="tel"
+            placeholder="Ex: +55 11 99999-9999"
+            className="w-full bg-zinc-900 border border-zinc-700 rounded-lg px-4 py-3 text-white placeholder-zinc-500 focus:outline-none focus:border-green-500"
+          />
         </div>
 
         {form.odd && form.valor && (
